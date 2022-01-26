@@ -3,12 +3,12 @@ import EditTodo from "./EditTodo"
 
 const ListTodo = () => {
     const url = "http://localhost:8080"
-    const [todos, setTodos] = useState([])
-    const getTodos = async () => {
+    const [comments, setComments] = useState([])
+    const getComments = async () => {
         try {
-            const response = await fetch(url + "/todos")
+            const response = await fetch(url + "/comments")
             const jsonData = await response.json()
-            setTodos(jsonData)
+            setComments(jsonData)
 
         } catch (err) {
             console.error(err);
@@ -16,37 +16,41 @@ const ListTodo = () => {
     }
 
     useEffect(() => {
-        getTodos();
+        getComments();
     }, [])
-    console.log(todos, 'test');
+    console.log(comments, 'test');
 
     return (
         <Fragment>
-
-            <table className="table mt-5 text-center">
-                <thead>
-                    <tr>
-                        <th>id</th>
-                        <th>description</th>
-                        <th>Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {todos.map(i => (
-                        <tr key={i.todo_id}>
-
-                            <td>{i.todo_id}</td>
-                            <td>{i.description}</td>
-
-
-                            <td> <EditTodo todo={i} /> <button className="btn btn-danger">Delete</button></td>
-
+            <div class="table-responsive">
+                <table className="table mt-5 text-center">
+                    <thead>
+                        <tr>
+                            <th>name</th>
+                            <th>company</th>
+                            <th>comment</th>
+                            <th>action</th>
                         </tr>
-                    ))}
+                    </thead>
+                    <tbody>
+                        {comments.map(i => (
+                            <tr key={i.id}>
+
+                                <td>{i.name}</td>
+                                <td>{i.company}</td>
+                                <td style={{ maxWidth: "250px", lineBreak: "anywhere" }}>{i.comment}</td>
 
 
-                </tbody>
-            </table>
+                                <td> <EditTodo todo={i} /> <button className="btn btn-danger">Delete</button></td>
+
+                            </tr>
+                        ))}
+
+
+                    </tbody>
+                </table>
+            </div>
+
         </Fragment >
     )
 }
