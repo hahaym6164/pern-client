@@ -1,7 +1,7 @@
 import logo from './logo.svg';
 import './App.css';
-import InputTodo from "./components/InputTodo"
-import ListTodo from './components/ListTodo';
+import InputComment from "./components/InputComment"
+import ListComment from './components/ListComment';
 import { Route, Routes, BrowserRouter } from "react-router-dom"
 function App() {
   return (
@@ -15,8 +15,8 @@ function App() {
 
         </Routes>
       </BrowserRouter>
-      <InputTodo />
-      <ListTodo />
+      <InputComment />
+      <ListComment />
     </div>
   );
 }
